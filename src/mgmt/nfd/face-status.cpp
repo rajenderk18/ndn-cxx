@@ -21,11 +21,11 @@
 
 #include "face-status.hpp"
 // change
-#include "../../encoding/block-helpers.hpp"
-#include "../../encoding/encoding-buffer.hpp"
-#include "../../encoding/tlv-nfd.hpp"
-#include "../../util/concepts.hpp"
-#include "../../util/string-helper.hpp"
+#include "encoding/block-helpers.hpp"
+#include "encoding/encoding-buffer.hpp"
+#include "encoding/tlv-nfd.hpp"
+#include "util/concepts.hpp"
+#include "util/string-helper.hpp"
 //
 
 namespace ndn {
@@ -81,13 +81,12 @@ FaceStatus::wireEncode(EncodingImpl<TAG>& encoder) const
   totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NFragmentationErrors, m_nFragmentationErrors);
   totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NOutOverMtu, m_nOutOverMtu);
   totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NInLpInvalid, m_nInLpInvalid);
-totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NReassemblyTimeouts, m_nReassemblyTimeouts);
-totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NInNetInvalid, m_nInNetInvalid);
-totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NAcknowledged, m_nAcknowledged);
-totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NRetransmitted, m_nRetransmitted);
-totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NRetxExhausted, m_nRetxExhausted);
-totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NCongestionMarked, m_nCongestionMarked);
-//////////////////
+  totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NReassemblyTimeouts, m_nReassemblyTimeouts);
+  totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NInNetInvalid, m_nInNetInvalid);
+  totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NAcknowledged, m_nAcknowledged);
+  totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NRetransmitted, m_nRetransmitted);
+  totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NRetxExhausted, m_nRetxExhausted);
+  totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::NCongestionMarked, m_nCongestionMarked);
   
   if (m_mtu) {
     totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::Mtu, *m_mtu);
@@ -624,12 +623,9 @@ operator==(const FaceStatus& a, const FaceStatus& b)
       a.getNReassemblyTimeouts()==b.getNReassemblyTimeouts() &&
       a.getNInNetInvalid()==b.getNInNetInvalid() &&
       a.getNAcknowledged()==b.getNAcknowledged() &&
-	  a.getNRetransmitted()==b.getNRetransmitted() &&
-	  a.getNRetxExhausted()==b.getNRetxExhausted() &&
-	  a.getNCongestionMarked()==b.getNCongestionMarked();
-      
-      
-      
+      a.getNRetransmitted()==b.getNRetransmitted() &&
+      a.getNRetxExhausted()==b.getNRetxExhausted() &&
+      a.getNCongestionMarked()==b.getNCongestionMarked();
 }
 
 std::ostream&
@@ -672,16 +668,16 @@ operator<<(std::ostream& os, const FaceStatus& status)
      << "                bytes: {in: " << status.getNInBytes() << ", "
      << "out: " << status.getNOutBytes() << "}}\n"
      <<"\nGeneric::{{"
-	 << "\n	getNFragmentationErrors(): " << status.getNFragmentationErrors() 
-	 << "\n	getNOutOverMtu(): " << status.getNOutOverMtu()
-	 << "\n	getNInLpInvalid(): " << status.getNInLpInvalid() 
-	 << "\n getNReassemblyTimeouts: " << status.getNReassemblyTimeouts() 
-	 << "\n getNAcknowledged:: " << status.getNAcknowledged() 
-	 << "\n getNAcknowledged:: " << status.getNAcknowledged() 
-	 << "\n getNRetransmitted:" << status.getNRetransmitted() 
-	 << "\n getNRetxExhausted:: " << status.getNRetxExhausted() 
-	 << "\n getNCongestionMarked:: " << status.getNCongestionMarked() 
-	 << "}}\n";
+     << "\n getNFragmentationErrors(): " << status.getNFragmentationErrors() 
+     << "\n getNOutOverMtu(): " << status.getNOutOverMtu()
+     << "\n getNInLpInvalid(): " << status.getNInLpInvalid() 
+     << "\n getNReassemblyTimeouts: " << status.getNReassemblyTimeouts() 
+     << "\n getNAcknowledged:: " << status.getNAcknowledged() 
+     << "\n getNAcknowledged:: " << status.getNAcknowledged() 
+     << "\n getNRetransmitted:" << status.getNRetransmitted() 
+     << "\n getNRetxExhausted:: " << status.getNRetxExhausted() 
+     << "\n getNCongestionMarked:: " << status.getNCongestionMarked() 
+     << "}}\n";
      ///
 
   return os << "     )";
