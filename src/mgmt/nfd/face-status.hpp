@@ -326,7 +326,7 @@ private:
   uint64_t m_nInBytes;
   uint64_t m_nOutBytes;
   
-  //////////////// change
+  /// change
   uint64_t m_nFragmentationErrors;
   uint64_t m_nOutOverMtu;
   uint64_t m_nInLpInvalid;

@@ -616,7 +616,7 @@ operator==(const FaceStatus& a, const FaceStatus& b)
       a.getNOutNacks() == b.getNOutNacks() &&
       a.getNInBytes() == b.getNInBytes() &&
       a.getNOutBytes() == b.getNOutBytes() &&
-      // change
+      /// change
       a.getNFragmentationErrors()==b.getNFragmentationErrors() &&
       a.getNOutOverMtu()==b.getNOutOverMtu() &&
       a.getNInLpInvalid()==b.getNInLpInvalid() &&
